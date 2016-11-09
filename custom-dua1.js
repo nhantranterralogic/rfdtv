@@ -50,7 +50,10 @@ var jsonUrls = {
     schedule: {
         RFDTV: "http://schedule.rfdcc.com/rfdtv/default.json",
         FamilyNet: "http://schedule.rfdcc.com/rfdtv/default_fnet.json",
-        RuralRadio: "http://schedule.rfdcc.com/rfdtv/default_radio.json"
+        RuralRadio: "http://schedule.rfdcc.com/rfdtv/default_radio.json",
+        RFDTVLink: 'http://www.rfdtv.com/category/267411/schedule',
+        FamilyNetLink: 'http://family.rfdcc.com/schedule',
+        RuralRadioLink: 'http://schedule.rfdcc.com/radio/index.html'
     },
     weatherPage: {
         data: "http://data-services.wsi.com/200904-01/576347879/Weather/Report/",
@@ -376,7 +379,7 @@ var CDEVRFDTV = {
 
         function convertToEDTTimeZone(clientDate) {
             //EDT
-            offset = -4.0;
+            offset = -5.0;
             utc = clientDate.getTime() + (clientDate.getTimezoneOffset() * 60000);
             serverDate = new Date(utc + (3600000 * offset));
             return serverDate.toLocaleString() + ' EDT';
@@ -496,14 +499,17 @@ var CDEVRFDTV = {
                 $wn('#div-full-schedule-rfd-tv').removeClass('hide');
                 addContentToDiv('div-full-schedule-rfd-tv', listScheduleRFDTV);
                 resetWidthForSubDiv('div-full-schedule-rfd-tv');
+                $wn('#div-full-shedule > a').attr('href', jsonUrls.schedule.RFDTVLink);
             } else if (this.id === 'family-net') {
                 $wn('#div-full-schedule-familynet').removeClass('hide');
                 addContentToDiv('div-full-schedule-familynet', listScheduleFamilyNet);
                 resetWidthForSubDiv('div-full-schedule-familynet');
+                $wn('#div-full-shedule > a').attr('href', jsonUrls.schedule.FamilyNetLink);
             } else {
                 $wn('#div-full-schedule-rural-radio').removeClass('hide');
                 addContentToDiv('div-full-schedule-rural-radio', listScheduleRuralRadio);
                 resetWidthForSubDiv('div-full-schedule-rural-radio');
+                $wn('#div-full-shedule > a').attr('href', jsonUrls.schedule.RuralRadioLink);
             }
 
             if (wng_pageInfo.isMobile) {
