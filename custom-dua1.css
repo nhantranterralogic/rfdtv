@@ -1173,13 +1173,19 @@ body.simple-a .displaySize .caption {
 .displaySize.displaySizeId-7 .summary .text p {
     font-size: 14px;
     line-height: 1.7;
-    margin-left: 169px;
+    /*margin-left: 169px;*/
+    margin-bottom: 0px;
+    margin-top: 0px;
 }
-
+.displaySize.displaySizeId-7 .summary {
+    margin-top: 5px;
+}
 #DisplaySizeId-7 .headline .text {
     font-size: 20px;
 }
-
+.displaySize.displaySizeId-7 .feature {
+    padding-left: 0px;
+}
 
 /* plus css */
 
@@ -1209,9 +1215,9 @@ div#div-upcoming span:last-child {
     z-index: 0;
 }
 
-#DisplaySizeId-7 .summary {
+/*#DisplaySizeId-7 .summary {
     margin-top: -9px;
-}
+}*/
 
 
 /* =============== end event page =================== */
