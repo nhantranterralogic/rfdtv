@@ -1908,9 +1908,10 @@ div#prommo-title span {
 }
 
 .lastest-news .list-lastest-news li .lastest-news-content .abstract {
-    position: absolute;
+    display: block;
     font-size: 13px;
     bottom: 0px;
+    padding-top: 4px;
 }
 
 .category-name .tag {
