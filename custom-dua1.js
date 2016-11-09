@@ -557,6 +557,22 @@ var CDEVRFDTV = {
         $wn('#DisplaySizeId68 ul').append('<a href=" ' +
             $wn('#DisplaySizeId68 .wnContent.summaryImage.abridged a').attr('href') +
             ' "><img id="icon-player"  src = "http://ftpcontent.worldnow.com/professionalservices/clients/rfdtv/images/play-button.png"/></a>');
+
+        $('#DisplaySizeId68 li.feature:gt(0)').remove();
+
+        $('#DisplaySizeId68 li.feature').find('.summaryImage.abridged').css({
+            'width':'100%',
+            'padding' : '0px',
+            'margin-top' : '5px'
+        });
+        $('#DisplaySizeId68 .toggle').remove();
+        $('#DisplaySizeId68 li.feature').find('.summaryImage.abridged img').css('width','100%');
+        $('#DisplaySizeId68 li.feature').find('h4.headline').insertAfter($('#DisplaySizeId68 li.feature').find('.summary.abridged'));
+        $('#DisplaySizeId68 li.feature').css({
+            'background-color' : '#fff',
+            'padding': '5px'
+        });
+        $('#DisplaySizeId68 > ul > li.wnItem.header > h3 > span').css('padding-left', '8px');
         return;
     },
     ///////////////////////////////
@@ -3276,6 +3292,7 @@ Worldnow.EventMan.event('WNCol4done', function () {
         }
         CDEVRFDTV.moveAds(52, '252', 'WNCol4', 'append');
         CDEVRFDTV.socialIcons('WNCol4');
+        CDEVRFDTV.headlineBoxCol4ID68();
     }
 
 });
@@ -3378,7 +3395,6 @@ Worldnow.EventMan.event('documentready', function () {
     if (!isPromotion1) {
 
         if (wng_pageInfo.containerClass === 'home') {
-            CDEVRFDTV.headlineBoxCol4ID68();
             CDEVRFDTV.headlineBoxCol4ID78();
             CDEVRFDTV.renderHomePage();
             $wn('#DisplaySizeId78 > ul > li.wnItem.feature> div.timestamps.wnDate').hide();
