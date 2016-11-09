@@ -1,0 +1,435 @@
+/* Version 20130819 - hlai */
+
+/**
+ * WORLDNOW
+ * RFDTV custom.css
+ * 2013-07-29
+ --------------------------------------------------------*/
+/*Body Background*/
+/*
+ #WNAffRFDTV {
+ font-size: 14px;
+ font-family: arial,verdana,sans-serif;
+ color: #000000;
+ border-color: #ffffff;
+ border-width: 0px;
+ border-style: solid;
+ background-color: #ffffff;
+ background: #000 url(/images/static/gfx/bg_right.gif) no-repeat top center;
+ }
+ */
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+html.ie8 #WNDS70, html.ie9 #WNDS70, html.ie10 #WNDS70 {
+	left: 333px !important;
+	padding-top: 0px !important;
+}
+
+.forIE11 {
+	left: 333px !important;
+	padding-top: 0px !important;
+}
+
+.wnContainerType-story.wnCenterAlignment {
+	background-repeat: repeat !important;
+}
+
+/* Top Story Area */
+#WNTopStoryWrap #WNTSWContent {
+	background-color: #FAF7F0;
+}
+
+/* Main Top Story */
+#WNAffRFDTV #WNColsAll .wnDS-20.wnDSContainer-standard {
+	border: none;
+}
+
+#WNTopStoryWrap .wnDS-20 .wnDVSummary .wnImage, #WNTopStoryWrap .wnDS-20 .wnDVSummary .wnImage img {
+	width: 100%;
+}
+
+/* Top Headline */
+#WNAffRFDTV #WNColsAll #WNCols23-4 #WNCol23 #WNCol23Top #WNTopStoryWrap .wnDS-18 {
+	background-color: #fff;
+}
+
+#WNAffRFDTV #WNColsAll #WNCols23-4 #WNCol23 #WNCol23Top #WNTopStoryWrap .wnDS-18 .wnDSHeader {
+	background-image: none;
+}
+
+/* Top Story Bottom Banner */
+#WNTSWBannerAd {
+	background-color: #FAF7F0;
+}
+
+/* Static Banner */
+#WNstaticbanner {
+	position: fixed;
+	bottom: 0;
+	z-index: 1000;
+	display: none;
+}
+
+#WNstaticbanner img {
+	width: 1236px;
+	height: 72px;
+	border: none;
+}
+
+/* Footer */
+#WNAffRFDTV #WNFooter #csFooter .wnDSItems-standard {
+	margin-left: -10px;
+}
+
+#wnFooter {
+	padding-left: 190px;
+	text-align: left;
+}
+#WNFooterLinks {
+	height: 80px;
+	margin: 0 auto;
+	background: #3953a0;
+	overflow: hidden;
+	position: relative;
+}
+#WNFooterLinks ul {
+	margin: 30px;
+}
+#WNFooterLinks ul li {
+	list-style: none;
+	float: left;
+	position: relative;
+	padding: 0 6px;
+	border-right: 1px solid #FFFFFF;
+}
+#WNFooterLinks ul li a {
+	text-decoration: none;
+	display: block;
+	padding: 0px 5px;
+	color: #FFFFFF;
+	font-size: 9pt;
+	font-family: Arial;
+}
+#WNFooterLinks ul li a:hover {
+	text-decoration: underline;
+}
+#WNFooterLogos {
+	width: 980px;
+	height: 50px;
+	margin: 0 auto;
+	overflow: hidden;
+	position: relative;
+}
+#WNFooterLogos ul {
+	float: left;
+	position: relative;
+	margin-top: 12px;
+	margin-left: 70px;
+	padding-left: 0;
+}
+#WNFooterLogos ul li {
+	list-style: none;
+	float: left;
+	position: relative;
+	padding: 0 5px;
+	margin: 0 1px 0 -1px;
+}
+#WNFooterLogos ul li a {
+	text-decoration: none;
+	display: block;
+	padding: 0px 2px;
+}
+
+#WNFooterLogos img {
+	border: none;
+}
+
+#WNFooter #WNCopyright img {
+	padding: 0 5px;
+}
+
+#WNFooterSecondSection {
+	padding-bottom: 10px;
+}
+
+#csFooterBottomText {
+	padding-left: 130px;
+	color: #5C4033;
+}
+
+#csFooterBottomText li a {
+	color: #5C4033;
+	font-weight: bold;
+}
+
+#WNAffRFDTV #WNFooter {
+	clear: both;
+	padding: 0px;
+	text-align: left;
+	background-color: #FFFFFF;
+}
+
+.wntopHeaderLeftLinks {
+	font-family: 'Montserrat', sans-serif;
+	color: #030000;
+	font-size: 14px;
+	font-weight: bold;
+	text-decoration: none;
+	border-right: 1px solid #030000;
+	padding: 0 4px;
+}
+.wntopHeaderLeftLinks:last-child {
+	border-right: none;
+	padding-right: 0;
+}
+
+.wnSubmit {
+	font-size: 16px;
+	color: white;
+	background-color: #5C4033;
+	width: 30px;
+	height: 30px;
+	margin-top: 5px;
+}
+
+.wnQueryText {
+	height: 25px;
+	width: 250px;
+	margin-top: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+#wnSociBa {
+	margin-left: 10px;
+	overflow: hidden;
+}
+
+#wnSociBa a {
+	display: block;
+	float: left;
+	margin-left: 5px;
+	height: 28px;
+	width: 26px;
+	text-decoration: none;
+	background-image: url('http://ftpcontent.worldnow.com/professionalservices/clients/rfdtv/images/social.png');
+	background-repeat: no-repeat;
+}
+
+#wnSociBa a:hover {
+	text-decoration: none;
+}
+
+#wnRSS {
+	background-position: 0 0;
+	width: 31px;
+}
+
+#wnFB {
+	background-position: -5px 0;
+}
+#wnFB:hover {
+	background-position: -5px -29px;
+}
+
+#wnTwit {
+	background-position: -37px 0px;
+}
+#wnTwit:hover {
+	background-position: -37px -29px;
+}
+
+#wnYoutube {
+	background-position: -69px 0;
+}
+#wnYoutube:hover {
+	background-position: -69px -29px;
+}
+
+#insta {
+	background-position: -99px 0;
+}
+#insta:hover {
+	background-position: -99px -29px;
+}
+/* Widget Slideshow Override */
+.wnBlock.displaySize .WNWidgetsContainer {
+	background-color: transparent !important;
+	position: relative !important;
+}
+.wnBlock.displaySize .undefined.WNWidgetsContainer {
+	position: absolute !important;
+}
+
+#WNColsAll .customSlideshowWidget .wn-gallery-description a, #WNColsAll .customSlideshowWidget .wn-gallery-description a:active, #WNColsAll .customSlideshowWidget .wn-gallery-description a:visited {
+	color: #4C4C4C;
+	font-weight: bold;
+}
+#WNColsAll .customSlideshowWidget .wn-gallery-description a:hover {
+	color: #f3b125;
+	font-weight: bold;
+}
+
+::-webkit-input-placeholder {
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 14px;
+	color: #5C4033;
+}
+:-moz-placeholder {
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 14px;
+	color: #5C4033;
+}
+::-moz-placeholder {
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 14px;
+	color: #5C4033;
+}
+:-ms-input-placeholder {
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 14px;
+	color: #5C4033;
+}
+.wnContainerType-story.wnCenterAlignment {
+	background-color: black;
+}
+
+#DisplaySizeId-7 {
+	background-color: white;
+}
+
+/* Redesign - Jit */
+#WNBranding {
+	display: inline-block;
+}
+div#WNAd41, div#WNAd46 {
+	border: 0;
+	background: transparent;
+}
+.wnContainerMemberSearch {
+	width: 100%;
+}
+#WNSearchBox-headertop {
+	float: right;
+}
+#wnLinkDiv {
+	display: block;
+	float: right;
+	margin: 5px 0;
+}
+nav.simple-b li a {
+	font-family: 'Montserrat', sans-serif;
+	color: #030000;
+	text-decoration: none;
+}
+nav.simple-b li a {
+	font-size: 16px;
+}
+nav.simple-b ul.sf-menu > li > a {
+	font-size: 18px;
+}
+nav.simple-b ul > li.active {
+	background-color: #3953a0;
+	padding: 7px 0;
+}
+nav.simple-b ul.sf-menu > li:hover {
+	background-color: #3953a0;
+}
+nav.simple-b ul.sf-menu > li:hover a {
+	color: #fff;
+}
+nav.simple-b ul > li.active > a {
+	color: #fff;
+}
+nav.simple-b {
+	border-bottom: 2px solid #030000;
+}
+nav.simple-b ul li ul {
+	background-color: #3953a0;
+}
+nav.simple-b ul li ul li {
+	padding: 0 5px;
+	border: 1px solid #000;
+	width: 200px;
+}
+nav.simple-b ul li ul li:first-child {
+	border-top: 1px solid #000;
+}
+nav.simple-b ul li ul li:hover {
+	background-color: #000;
+}
+nav.simple-b ul li ul li a {
+	color: #fff;
+}
+
+/*HB redesign*/
+#WNCol2 .headlineBox.displaySize {
+	border: 1px solid #CCCCCC;
+	margin-top: 15px;
+}
+#WNCol2 .headlineBox .header .abridgedHeadline {
+	font-family: 'Montserrat', sans-serif;
+	color: #030000;
+	font-size: 17px;
+}
+#WNCol2 .headlineBox.displaySize .headline a {
+	font-family: 'Montserrat', sans-serif;
+	color: #030000;
+	text-decoration: none;
+	font-size: 14px;
+}
+#WNCol2 .headlineBox.displaySize .summary {
+	font-family: 'Montserrat', sans-serif;
+	color: #030000;
+	font-size: 12px;
+}
+#WNCol2 .headlineBox.displaySize .summaryImage {
+	margin-top: 14px;
+}
+#WNCol2 .headlineBox.displaySize .more {
+	width: 100%;
+	display: block;
+	background: #afb1b0;
+	padding: 3px;
+	text-align: center;
+	font-family: 'Montserrat', sans-serif;
+	color: #fff;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-size: 14px;
+}
+#WNSearchBox-headertop .wnSubmit {
+	background: url(http://ftpcontent.worldnow.com/professionalservices/clients/rfdtv/images/search_icon.png) no-repeat;
+	border: 0 !important;
+	width: 20px;
+	height: 19px;
+	margin-top: 5px !important;
+}
+#WNSearchBox-headertop #searchIcon {
+	margin-top: 5px;
+}
+#WNFooter #WNCopyrightAlignment {
+	width: 980px;
+	margin: 0 auto;
+	float: none;
+	display: block;
+}
+
+#WNFooter table, #WNFooter #WNCopyright .wnCopyrightText {
+	max-width: 100%;
+}
+#google_translate_element {
+	margin-top: 3px;
+	margin-left: 5px;
+}
+.page {
+	background-color: transparent !important;
+}
+
+.displaySize .header h3 {
+	text-transform: uppercase;
+}
+.sf-horizontal>li {
+    padding: 0 19px;
+}
