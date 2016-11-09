@@ -2259,7 +2259,7 @@ var CDEVRFDTV = {
                 if (authorName == wxTeamSocialInfo[i][0]) {
 
                   $wn('<div class="wnContent summaryImage abridged left width115" ' +
-                        ' style="background: url(' + wxTeamSocialInfo[i][4] + ') center center no-repeat;width: 100%; height: 132px;" ></div>').insertBefore($wn(this).find('.headline:first'));
+                        ' style="background: url(' + wxTeamSocialInfo[i][4] + ') center center no-repeat;width: 100%; height: 132px;margin-top: 5px !important;" ></div>').insertBefore($wn(this).find('.headline:first'));
                     social = wxTeamSocialInfo[i];
                     break;
                 } else {
