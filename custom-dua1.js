@@ -2889,7 +2889,7 @@ var CDEVRFDTV = {
                 //
                 $wn('#WNCol4').css('margin-top', '0px');
                 customMeetTheTeam();
-                mostPopular();
+                // mostPopular();
                 $wn('#WNAffRFDTV').show();
 
             });

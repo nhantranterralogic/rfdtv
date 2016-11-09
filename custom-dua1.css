@@ -3493,86 +3493,6 @@ section.block .item.story.hasclip a.headline h4:after {
 }
 
 
-/**** MOST POPULAR ****/
-
-.popularBlock {
-    border: none!important;
-    padding-left: 0px!important;
-    padding-right: 0px!important;
-}
-
-#mostPopular {
-    padding-bottom: 10px;
-}
-
-#mostPopular .headline {
-    display: block!important;
-    height: 1px;
-    background: #000;
-    width: 100%;
-    position: relative;
-    margin-bottom: 30px;
-}
-
-#mostPopular .headline h1 {
-    position: absolute;
-    top: -23px;
-    background-color: #fff;
-    padding-right: 10px;
-    text-transform: uppercase;
-    font-size: 20px!important;
-}
-
-#mostPopular ul {
-    display: block;
-    position: relative;
-    list-style: none;
-    margin: 0px;
-    padding: 0px;
-}
-
-#mostPopular ul .most-popular-thumbnail {
-    height: 145px;
-    background-size: contain!important;
-}
-
-#mostPopular ul .most-popular-thumbnail .tag {
-    list-style-type: none;
-    color: #fff;
-    padding: 4px !important;
-    font-weight: bold;
-    width: auto;
-    height: auto;
-    margin-top: 10px;
-    margin-left: 15px;
-    font-size: 12px;
-    text-align: center;
-    display: inline-table;
-    margin-right: 30px;
-    position: absolute;
-    text-transform: uppercase;
-}
-
-#mostPopular ul .most-popular-thumbnail .tag.hidden {
-    display: none!important;
-}
-
-#mostPopular ul .most-popular-thumbnail .tag.show {
-    display: block!important;
-}
-
-#mostPopular ul .most-popular-content h1 {
-    color: #666;
-    font-weight: bold;
-    font-size: 17px;
-    margin-bottom: 25px!important;
-}
-
-#mostPopular ul .most-popular-content h1:last-child {
-    margin-bottom: 0px !important;
-}
-
-
 /*
 LIST MORE NEWS
 */
@@ -3839,7 +3759,7 @@ div#DisplaySizeId78>div.weather-override.custom h3 {
     width: 188px;
     font-size: 20px;
 }
-
+/*
 #wnMostPopularTabbed span.cross,
 div#DisplaySizeId78>div.weather-override.custom span.cross {
     height: 2px;
@@ -3912,7 +3832,7 @@ div#DisplaySizeId78>div.weather-override.custom span.cross {
 
 #wnMostPopularTabbed ul li h3 a:hover {
     color: #ea8141;
-}
+}*/
 
 div#WNCols23-4 {
     margin-top: 10px;
