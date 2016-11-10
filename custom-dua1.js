@@ -21,6 +21,8 @@ var MostPopularStoriesCategoryNumber = "259595";
 var MostPopularVideosCategoryNumber = "259596";
 var MostPopularNumberOfItems = "10";
 var proxyURL = "https://crossorigin.me/";
+var itemsLatestNewsWesternSport = 17;
+var itemsTopStoryWesternSport = 17;
 
 var weatherDummy = 'http://ftpcontent.worldnow.com/professionalservices/clients/rfdtv/images/weather_author_dummy.PNG';
 var iconHourlyForecast = 'http://ftpcontent.worldnow.com/professionalservices/clients/rfdtv/images/icon_weather_page.png';
@@ -2900,7 +2902,7 @@ var CDEVRFDTV = {
                 var features = data.features;
 
                 // latest new
-                CDEVRFDTV.lastestNewsBlock(features, '-20', itemsOfTopStory + 1, 11);
+                CDEVRFDTV.lastestNewsBlock(features, '-20', itemsTopStoryWesternSport + 1, itemsLatestNewsWesternSport);
                 // move latest new
                 $wn('#DisplaySizeId-7').html($wn('#WNLastestNews'));
                 //
@@ -2943,7 +2945,7 @@ var CDEVRFDTV = {
             var right = 3;
             $wn('#WNCol23Top').remove();
             // filter stories list
-            var stories = CDEVRFDTV.spliceStories('-20', 0, itemsOfTopStory, feature);
+            var stories = CDEVRFDTV.spliceStories('-20', 0, itemsTopStoryWesternSport, feature);
             var structure = '<div id="CDEV-topStories">' +
                 '<div id="show-stories">' +
                 '<div class="text"></div>' +
@@ -3363,7 +3365,7 @@ Worldnow.EventMan.event('bodydone', function () {
             CDEVRFDTV.westernSport();
         }
         $wn('#WNAffRFDTV').show();
-        CDEVRFDTV.promoAre();
+        // CDEVRFDTV.promoAre();
         CDEVRFDTV.col4weather();
         CDEVRFDTV.brandingAndNavigation();
         CDEVRFDTV.other();
