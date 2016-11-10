@@ -3490,7 +3490,7 @@ section.block .item.story.hasclip a.headline h4:after {
 .footerMenu li a {
     font-size: 15px!important;
     display: block!important;
-    text-align: center!important;
+    text-align: left!important;
 }
 
 

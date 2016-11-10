@@ -14,11 +14,15 @@ var url = window.location.href.indexOf('#') > -1 ? window.location.href.substrin
 url = url.indexOf('/?clienttype=smartdevice') > -1 ? url.replace('/?clienttype=smartdevice', '') : url; // use check mobile on desktop
 url = url.indexOf('?clienttype=smartdevice') > -1 ? url.replace('?clienttype=smartdevice', '') : url; // use check mobile on desktop
 var isPromotion1 = wng_pageInfo.contentClassification == "Promotion 1" ? true : false;
+    isPromotion1 = wng_pageInfo.containerId == 310304 ? true : isPromotion1;
+    isPromotion1 = wng_pageInfo.containerId == 304378 ? true : isPromotion1;
 var proxyURL = 'https://crossorigin.me/';
 var MostPopularStoriesCategoryNumber = "259595";
 var MostPopularVideosCategoryNumber = "259596";
 var MostPopularNumberOfItems = "10";
 var proxyURL = "https://crossorigin.me/";
+var itemsLatestNewsWesternSport = 17;
+var itemsTopStoryWesternSport = 17;
 
 var weatherDummy = 'http://ftpcontent.worldnow.com/professionalservices/clients/rfdtv/images/weather_author_dummy.PNG';
 var iconHourlyForecast = 'http://ftpcontent.worldnow.com/professionalservices/clients/rfdtv/images/icon_weather_page.png';
@@ -2790,6 +2794,16 @@ var CDEVRFDTV = {
         $wn(menuElement).prependTo('#WNCopyrightAlignment');
         $wn('.footerMenu ul').css('padding', '0px');
         $wn('#WNCopyright > table > tbody > tr > td:nth-child(1) > a > img:nth-child(1)').css('margin-top', '85px');
+        // add items About and Contact Us
+        // about
+        $wn('#WNCopyrightAlignment > div:nth-child(1) > ul > li:nth-child(1)').clone().prependTo($wn('#WNCopyrightAlignment > div:nth-child(1) > ul'));
+        $wn('#WNCopyrightAlignment > div:nth-child(1) > ul > li:nth-child(1) > a').text('About');
+        $wn('#WNCopyrightAlignment > div:nth-child(1) > ul > li:nth-child(1) > a').attr('href', 'http://www.rfdtv.com/story/24589387/about-us');
+        // contact us
+        $wn('#WNCopyrightAlignment > div:nth-child(1) > ul > li:nth-child(1)').clone().prependTo($wn('#WNCopyrightAlignment > div:nth-child(1) > ul'));
+        $wn('#WNCopyrightAlignment > div:nth-child(1) > ul > li:nth-child(2) > a').text('Contact Us');
+        $wn('#WNCopyrightAlignment > div:nth-child(1) > ul > li:nth-child(2) > a').attr('href', 'http://www.rfdtv.com/category/267691/contact-us');
+
     },
 
     /*
@@ -2929,7 +2943,7 @@ var CDEVRFDTV = {
                 var features = data.features;
 
                 // latest new
-                CDEVRFDTV.lastestNewsBlock(features, '-20', itemsOfTopStory + 1, 11);
+                CDEVRFDTV.lastestNewsBlock(features, '-20', itemsTopStoryWesternSport + 1, itemsLatestNewsWesternSport);
                 // move latest new
                 $wn('#DisplaySizeId-7').html($wn('#WNLastestNews'));
                 //
@@ -2972,7 +2986,7 @@ var CDEVRFDTV = {
             var right = 3;
             $wn('#WNCol23Top').remove();
             // filter stories list
-            var stories = CDEVRFDTV.spliceStories('-20', 0, itemsOfTopStory, feature);
+            var stories = CDEVRFDTV.spliceStories('-20', 0, itemsTopStoryWesternSport, feature);
             var structure = '<div id="CDEV-topStories">' +
                 '<div id="show-stories">' +
                 '<div class="text"></div>' +
@@ -3374,6 +3388,8 @@ Worldnow.EventMan.event('wncol23done', function () {
 
     } else { // if the page is Promotion 1 so remove CSS
         $wn('link[href="//ftpcontent.worldnow.com/professionalservices/clients/rfdtv/custom-dua1.css"]').remove();
+        $wn('link[href="/professionalservices/clients/rfdtv/custom-dua1.css"]').remove();
+        $wn('link[href="/professionalservices/clients/rfdtv/custom.css"]').remove();
     }
 
 
@@ -3390,7 +3406,7 @@ Worldnow.EventMan.event('bodydone', function () {
             CDEVRFDTV.westernSport();
         }
         $wn('#WNAffRFDTV').show();
-        CDEVRFDTV.promoAre();
+        // CDEVRFDTV.promoAre();
         CDEVRFDTV.col4weather();
         CDEVRFDTV.brandingAndNavigation();
         CDEVRFDTV.other();
