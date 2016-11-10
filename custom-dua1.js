@@ -14,6 +14,8 @@ var url = window.location.href.indexOf('#') > -1 ? window.location.href.substrin
 url = url.indexOf('/?clienttype=smartdevice') > -1 ? url.replace('/?clienttype=smartdevice', '') : url; // use check mobile on desktop
 url = url.indexOf('?clienttype=smartdevice') > -1 ? url.replace('?clienttype=smartdevice', '') : url; // use check mobile on desktop
 var isPromotion1 = wng_pageInfo.contentClassification == "Promotion 1" ? true : false;
+    isPromotion1 = wng_pageInfo.containerId == 310304 ? true : isPromotion1;
+    isPromotion1 = wng_pageInfo.containerId == 304378 ? true : isPromotion1;
 var proxyURL = 'https://crossorigin.me/';
 var MostPopularStoriesCategoryNumber = "259595";
 var MostPopularVideosCategoryNumber = "259596";
@@ -3333,6 +3335,8 @@ Worldnow.EventMan.event('wncol23done', function () {
 
     } else { // if the page is Promotion 1 so remove CSS
         $wn('link[href="//ftpcontent.worldnow.com/professionalservices/clients/rfdtv/custom-dua1.css"]').remove();
+        $wn('link[href="/professionalservices/clients/rfdtv/custom-dua1.css"]').remove();
+        $wn('link[href="/professionalservices/clients/rfdtv/custom.css"]').remove();
     }
 
 
