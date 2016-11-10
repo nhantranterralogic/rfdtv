@@ -2751,6 +2751,16 @@ var CDEVRFDTV = {
         $wn(menuElement).prependTo('#WNCopyrightAlignment');
         $wn('.footerMenu ul').css('padding', '0px');
         $wn('#WNCopyright > table > tbody > tr > td:nth-child(1) > a > img:nth-child(1)').css('margin-top', '85px');
+        // add items About and Contact Us
+        // about
+        $wn('#WNCopyrightAlignment > div:nth-child(1) > ul > li:nth-child(1)').clone().prependTo($wn('#WNCopyrightAlignment > div:nth-child(1) > ul'));
+        $wn('#WNCopyrightAlignment > div:nth-child(1) > ul > li:nth-child(1) > a').text('About');
+        $wn('#WNCopyrightAlignment > div:nth-child(1) > ul > li:nth-child(1) > a').attr('href', 'http://www.rfdtv.com/story/24589387/about-us');
+        // contact us
+        $wn('#WNCopyrightAlignment > div:nth-child(1) > ul > li:nth-child(1)').clone().prependTo($wn('#WNCopyrightAlignment > div:nth-child(1) > ul'));
+        $wn('#WNCopyrightAlignment > div:nth-child(1) > ul > li:nth-child(2) > a').text('Contact Us');
+        $wn('#WNCopyrightAlignment > div:nth-child(1) > ul > li:nth-child(2) > a').attr('href', 'http://www.rfdtv.com/category/267691/contact-us');
+
     },
 
     /*
