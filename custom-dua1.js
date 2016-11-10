@@ -22,7 +22,7 @@ var MostPopularVideosCategoryNumber = "259596";
 var MostPopularNumberOfItems = "10";
 var proxyURL = "https://crossorigin.me/";
 var itemsLatestNewsWesternSport = 17;
-var itemsTopStoryWesternSport = 17;
+var itemsTopStoryWesternSport = 10;
 
 var weatherDummy = 'http://ftpcontent.worldnow.com/professionalservices/clients/rfdtv/images/weather_author_dummy.PNG';
 var iconHourlyForecast = 'http://ftpcontent.worldnow.com/professionalservices/clients/rfdtv/images/icon_weather_page.png';
