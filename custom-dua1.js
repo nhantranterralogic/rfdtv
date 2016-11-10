@@ -3099,6 +3099,8 @@ var CDEVRFDTV = {
             $wn('#DisplaySizeId78>span:first-child').attr('style', 'background: url(' + img + ') center center no-repeat;');
             $wn('#DisplaySizeId78>span:first-child').hide();
             $wn('div#DisplaySizeId78>div.weather-override.custom').html('<h3>MEET THE TEAM</h3><span class="cross"><s/pan>');
+            $wn('.displaySize.displaySizeId78 div.contact-info a img').css({'width': '39px','height': '37px'});
+            $wn('#DisplaySizeId78 > ul > li.wnItem.feature > div.contact-info > a').css('display', 'inline-block');
         }
         /////////////////
         /// MOST POPULAR COL 4 (STORIES VS VIDEOS)
