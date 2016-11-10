@@ -2318,17 +2318,26 @@ var CDEVRFDTV = {
 
             $wn('div#DisplaySizeId78 ul.wnGroup.contentGroup li').each(function (index) {
                 var authorName = $wn(this).find('h4 span:first-child').text();
+                // person not in list
+                var thumbnail = '';
+                if ($wn(this).find('.summaryImage.abridged a img').attr('src')) {
+                    thumbnail = $wn(this).find('.summaryImage.abridged a img').attr('src');
+                } else {
+                    thumbnail = 'http://ftpcontent.worldnow.com/professionalservices/clients/rfdtv/images/weather_author_dummy.PNG';
+                }
                 for (var i = 0; i < wxTeamSocialInfo.length; i++) {
                     if (authorName == wxTeamSocialInfo[i][0]) {
-
-                    $wn('<div class="wnContent summaryImage abridged left width115" ' +
-                            ' style="background: url(' + wxTeamSocialInfo[i][4] + ') center center no-repeat;width: 100%; height: 132px;margin-top: 5px !important;" ></div>').insertBefore($wn(this).find('.headline:first'));
+                        thumbnail = wxTeamSocialInfo[i][4];
                         social = wxTeamSocialInfo[i];
                         break;
                     } else {
-                        social = ['', 'http://www.facebook.com', 'http://www.twitter.com', ''];
+                        social = ['', 'http://www.facebook.com', 'http://www.twitter.com', '']; 
                     }
                 }
+
+                $wn('<div class="wnContent summaryImage abridged left width115" ' +
+                            ' style="background: url(' + thumbnail + ') center center no-repeat; max-width: 100%; height: 132px; margin-top: 5px !important; background-size: 156px 132px;" ></div>').insertBefore($wn(this).find('.headline:first'));
+
                 var contactInfo = '<div class="contact-info"><a class="fb" href="' + social[1] + '" target="_blank">' +
                     '<img src="http://ftpcontent.worldnow.com/professionalservices/clients/rfdtv/images/social-icon/facebook.png"></a>' +
                     '<a class="twitter" href="' + social[2] + '" target="_blank">' +
