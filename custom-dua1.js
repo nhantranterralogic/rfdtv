@@ -2216,141 +2216,182 @@ var CDEVRFDTV = {
     },
     meetTheTeam: function () {
 
-        var currentPositionTeam = 0;
-        /* meet the team */
-        // get social
-        $wn('.displaySize.displaySizeId78 .headline').show();
-        $wn('#DisplaySizeId78 h4.wnContent.headline.abridged').hide();
 
-        $wn('<div>MEET THE TEAM</div>').prependTo($wn('#DisplaySizeId78'));
-        $wn('div#DisplaySizeId78  .timestamps.wnDate').hide();
-        // move image up header
-        $wn('div#DisplaySizeId78 ul.wnGroup.contentGroup li.feature').each(function (index) {
-            $wn(this).find('.headline:gt(0)').remove();
-            $wn(this).find('.headline').show();
-            $wn(this).find('.summaryImage').hide();
-            // if ($wn(this).find('.summaryImage.abridged').length > 0) {
-            //     var datapath = $wn(this).find('.summaryImage.abridged img ').attr('data-path');
-            //     if (typeof datapath != 'undefined' && datapath.length > 0)
-            //         $wn(this).find('.summaryImage.abridged img ').attr('src', $wn(this).find('.summaryImage.abridged img ').attr('data-path'));
-            //     $wn(this).find('.summaryImage.abridged').insertBefore($wn(this).find('.headline:first'));
-            // }
-            // else if ($wn(this).find('.summaryImage').length > 0) {
-            //     var datapath = $wn(this).find('.summaryImage img ').attr('data-path');
-            //     if (typeof datapath != 'undefined' && datapath.length > 0)
-            //         var href = $wn(this).find('.summaryImage a ').attr('href');
-            //     $wn('<a href="' + href + '"><div class="wnContent summaryImage abridged left width115" ' +
-            //         ' style="background: url(' + datapath + ') center center no-repeat #e7e8e8; background-size: contain; background-color: black;" ></div></a>').insertBefore($wn(this).find(' .headline:first'));
-            // }
-            // else
-              // $wn('<div class="wnContent summaryImage abridged left width115" ' +
-              //       ' style="background: url(' + weatherDummy + ') center center no-repeat #e7e8e8;" ></div>').insertBefore($wn(this).find(' .headline:first'));
-            // headline
-            var text = $wn(this).find('.headline:first a').text();
-            if (text.indexOf(',') > -1) {
-                var s = text.split(',');
-                $wn(this).find('.headline a ').text('');
-                $wn(this).find('.headline a').append('<span>' + s[0] + '</span><span>' + s[1] + '</span>');
+        //render RAW before fe-format it again to MEET THE TEAM Section
+        //before sometimes it cannot render fully list
+
+        $.ajax({
+            url: location.href + '?clienttype=container.json'
+        })
+        .fail(function (err) {
+            console.log(err);
+        })
+        .done(function (data) {
+            var meetheteamCategory = CDEVRFDTV.spliceStories('78', 0, 1, data.features);
+            var person = [];
+            for (var i = 0; i < meetheteamCategory[0].nested.features.length; i++) {
+                person.push(meetheteamCategory[0].nested.features[i]);
             }
 
-        });
-        //
+            $wn('#DisplaySizeId78 ul.contentGroup li.feature').remove();
 
-        $wn('.wnDVWxFullForecast.wnWxHorizontal.wnDSContainer-standard').addClass('weather-override');
-        $wn(' div#DisplaySizeId7').addClass('weather-override');
-        $wn('div#DisplaySizeId78').addClass('weather-override');
-        $wn('div#DisplaySizeId78 > div:first-child').addClass('weather-override');
-        $wn('div#DisplaySizeId78 ul.wnGroup.contentGroup').addClass('weather-override');
-        $wn('.displaySize.displaySizeId78 .feature').addClass('weather-override');
-        var $hasImage = $wn('#DisplaySizeId78 .displaySizeId-7 .summaryImage.abridged');
-        $wn('#DisplaySizeId78 .displaySizeId-7 .summaryImage.abridged').addClass('weather-override');
-        $wn('#DisplaySizeId78 .summaryImage.width115 img').addClass('weather-override');
-        $wn('#DisplaySizeId78 .summaryImage.width90 img').addClass('weather-override');
-        $wn('#DisplaySizeId78 .summaryImage.width50 img').addClass('weather-override');
-        $wn('.displaySize.displaySizeId78 .headline').addClass('weather-override');
-        $wn('#DisplaySizeId78 .headline .text').addClass('weather-override');
-        $wn('.displaySize.displaySizeId78 .summary.abridged').addClass('weather-override');
-        $wn('div#DisplaySizeId78 ul.wnGroup.contentGroup li.feature .headline span').css('text-align', 'center');
-        // remove  li not person
-        $wn('#DisplaySizeId78 li').each(function () {
-            if ($wn(this).attr('class').indexOf('feature') == -1) {
-                $wn(this).remove();
-            }
-        });
+            var personListElement = '';
 
-
-        $wn('div#DisplaySizeId78 ul.wnGroup.contentGroup li').each(function (index) {
-            var authorName = $wn(this).find('h4 span:first-child').text();
-            for (var i = 0; i < wxTeamSocialInfo.length; i++) {
-                if (authorName == wxTeamSocialInfo[i][0]) {
-
-                  $wn('<div class="wnContent summaryImage abridged left width115" ' +
-                        ' style="background: url(' + wxTeamSocialInfo[i][4] + ') center center no-repeat;width: 100%; height: 132px;margin-top: 5px !important;" ></div>').insertBefore($wn(this).find('.headline:first'));
-                    social = wxTeamSocialInfo[i];
-                    break;
+            for (var j = 0; j < person.length; j++) {
+                if (typeof person[j].abridged.abstractimage == 'undefined') {
+                    var thumbnail = '';
                 } else {
-                    social = ['', 'http://www.facebook.com', 'http://www.twitter.com', ''];
+                    var thumbnail = person[j].abridged.abstractimage.filename;
                 }
+
+                var personRAW = '<li class="wnItem feature General001 story priority-1 odd displaySizeId-7 odd-7"><meta content="General001"><meta content="2016-02-03 18:32:24"><h4 class="wnContent headline"><a href="' + person[j].link + '"><span class="text">' + person[j].headline + '</span></a></h4><h4 class="wnContent headline abridged"><a href="' + person[j].link + '"><span class="text">' + person[j].headline + '</span></a></h4><div class="wnContent summaryImage left width90"><a href="' + person[j].link + '"><img border="0" width="90" data-path="' + thumbnail + '" title="' + person[j].headline + '" alt="' + person[j].headline + '"></a><span class="caption left width90"><span class="text">' + person[j].headline + '</span></span></div><div class="wnContent summaryImage abridged left width115"><a href="' + person[j].link + '"><img border="0" width="115" data-path="' + thumbnail + '" class="" src="' + thumbnail + '" style="display: block;"></a></div><div class="wnContent summary abridged"><span class="text">' + person[j].abstract + '</span></div><div class="wnContent summary"><span class="text">' + person[j].abstract + '</span></div><div class="wnClear"></div></li>';
+
+                personListElement += personRAW;
             }
-            var contactInfo = '<div class="contact-info"><a class="fb" href="' + social[1] + '" target="_blank">' +
-                '<img src="http://ftpcontent.worldnow.com/professionalservices/clients/rfdtv/images/social-icon/facebook.png"></a>' +
-                '<a class="twitter" href="' + social[2] + '" target="_blank">' +
-                '<img src="http://ftpcontent.worldnow.com/professionalservices/clients/rfdtv/images/social-icon/twitter.png"></a>' +
-                '<a class="email" href="mailto:' + social[3] + '" target="_blank">' +
-                '<img src="http://ftpcontent.worldnow.com/professionalservices/clients/rfdtv/images/social-icon/email.png"></a></div>';
-            $wn(contactInfo).insertAfter($wn(this).find('h4.headline'));
-        });
 
-        // button
-        $wn('<span class="backward control"></span>').prependTo($wn('#DisplaySizeId78'));
-        $wn('#DisplaySizeId78').append('<span class="forward control"></span>');
-        // events
+            $wn(personListElement).insertAfter('#DisplaySizeId78 > ul > li.wnItem.advertisement');
 
-        /* hide */
-        if ($wn('.displaySize.displaySizeId78 .feature').length < 2) {
-            $wn('#DisplaySizeId78 > span.backward').hide();
-            $wn('#DisplaySizeId78 > span.forward').hide();
-        } else
-            $wn('#DisplaySizeId78 > span.backward').hide();
 
-        $wn('.displaySize.displaySizeId78 .feature:first').show();
-        $wn('.displaySize.displaySizeId78 .feature:not(:first)').hide();
+            //BEGIN RENDER MEET THE TEAM SLIDER
+            var currentPositionTeam = 0;
+            /* meet the team */
+            // get social
+            $wn('.displaySize.displaySizeId78 .headline').show();
+            $wn('#DisplaySizeId78 h4.wnContent.headline.abridged').hide();
 
-        $wn('#DisplaySizeId78 > span.forward').click(function () {
-            var len = $wn('.displaySize.displaySizeId78 .feature').length;
-            if (1 < len && currentPositionTeam < (len - 1)) {
+            $wn('<div>MEET THE TEAM</div>').prependTo($wn('#DisplaySizeId78'));
+            $wn('div#DisplaySizeId78  .timestamps.wnDate').hide();
+            // move image up header
+            $wn('div#DisplaySizeId78 ul.wnGroup.contentGroup li.feature').each(function (index) {
+                $wn(this).find('.headline:gt(0)').remove();
+                $wn(this).find('.headline').show();
+                $wn(this).find('.summaryImage').hide();
+                // if ($wn(this).find('.summaryImage.abridged').length > 0) {
+                //     var datapath = $wn(this).find('.summaryImage.abridged img ').attr('data-path');
+                //     if (typeof datapath != 'undefined' && datapath.length > 0)
+                //         $wn(this).find('.summaryImage.abridged img ').attr('src', $wn(this).find('.summaryImage.abridged img ').attr('data-path'));
+                //     $wn(this).find('.summaryImage.abridged').insertBefore($wn(this).find('.headline:first'));
+                // }
+                // else if ($wn(this).find('.summaryImage').length > 0) {
+                //     var datapath = $wn(this).find('.summaryImage img ').attr('data-path');
+                //     if (typeof datapath != 'undefined' && datapath.length > 0)
+                //         var href = $wn(this).find('.summaryImage a ').attr('href');
+                //     $wn('<a href="' + href + '"><div class="wnContent summaryImage abridged left width115" ' +
+                //         ' style="background: url(' + datapath + ') center center no-repeat #e7e8e8; background-size: contain; background-color: black;" ></div></a>').insertBefore($wn(this).find(' .headline:first'));
+                // }
+                // else
+                // $wn('<div class="wnContent summaryImage abridged left width115" ' +
+                //       ' style="background: url(' + weatherDummy + ') center center no-repeat #e7e8e8;" ></div>').insertBefore($wn(this).find(' .headline:first'));
+                // headline
+                var text = $wn(this).find('.headline:first a').text();
+                if (text.indexOf(',') > -1) {
+                    var s = text.split(',');
+                    $wn(this).find('.headline a ').text('');
+                    $wn(this).find('.headline a').append('<span>' + s[0] + '</span><span>' + s[1] + '</span>');
+                }
 
-                currentPositionTeam++;
-                $wn('.displaySize.displaySizeId78 .feature').hide();
-                $wn('.displaySize.displaySizeId78 .feature:nth-of-type(' + (currentPositionTeam + 1) + ')').show();
+            });
+            //
 
-                $wn('#DisplaySizeId78 > span.backward').show();
-                if (currentPositionTeam == (len - 1))
+            $wn('.wnDVWxFullForecast.wnWxHorizontal.wnDSContainer-standard').addClass('weather-override');
+            $wn(' div#DisplaySizeId7').addClass('weather-override');
+            $wn('div#DisplaySizeId78').addClass('weather-override');
+            $wn('div#DisplaySizeId78 > div:first-child').addClass('weather-override');
+            $wn('div#DisplaySizeId78 ul.wnGroup.contentGroup').addClass('weather-override');
+            $wn('.displaySize.displaySizeId78 .feature').addClass('weather-override');
+            var $hasImage = $wn('#DisplaySizeId78 .displaySizeId-7 .summaryImage.abridged');
+            $wn('#DisplaySizeId78 .displaySizeId-7 .summaryImage.abridged').addClass('weather-override');
+            $wn('#DisplaySizeId78 .summaryImage.width115 img').addClass('weather-override');
+            $wn('#DisplaySizeId78 .summaryImage.width90 img').addClass('weather-override');
+            $wn('#DisplaySizeId78 .summaryImage.width50 img').addClass('weather-override');
+            $wn('.displaySize.displaySizeId78 .headline').addClass('weather-override');
+            $wn('#DisplaySizeId78 .headline .text').addClass('weather-override');
+            $wn('.displaySize.displaySizeId78 .summary.abridged').addClass('weather-override');
+            $wn('div#DisplaySizeId78 ul.wnGroup.contentGroup li.feature .headline span').css('text-align', 'center');
+            // remove  li not person
+            $wn('#DisplaySizeId78 li').each(function () {
+                if ($wn(this).attr('class').indexOf('feature') == -1) {
+                    $wn(this).remove();
+                }
+            });
+
+
+            $wn('div#DisplaySizeId78 ul.wnGroup.contentGroup li').each(function (index) {
+                var authorName = $wn(this).find('h4 span:first-child').text();
+                for (var i = 0; i < wxTeamSocialInfo.length; i++) {
+                    if (authorName == wxTeamSocialInfo[i][0]) {
+
+                    $wn('<div class="wnContent summaryImage abridged left width115" ' +
+                            ' style="background: url(' + wxTeamSocialInfo[i][4] + ') center center no-repeat;width: 100%; height: 132px;margin-top: 5px !important;" ></div>').insertBefore($wn(this).find('.headline:first'));
+                        social = wxTeamSocialInfo[i];
+                        break;
+                    } else {
+                        social = ['', 'http://www.facebook.com', 'http://www.twitter.com', ''];
+                    }
+                }
+                var contactInfo = '<div class="contact-info"><a class="fb" href="' + social[1] + '" target="_blank">' +
+                    '<img src="http://ftpcontent.worldnow.com/professionalservices/clients/rfdtv/images/social-icon/facebook.png"></a>' +
+                    '<a class="twitter" href="' + social[2] + '" target="_blank">' +
+                    '<img src="http://ftpcontent.worldnow.com/professionalservices/clients/rfdtv/images/social-icon/twitter.png"></a>' +
+                    '<a class="email" href="mailto:' + social[3] + '" target="_blank">' +
+                    '<img src="http://ftpcontent.worldnow.com/professionalservices/clients/rfdtv/images/social-icon/email.png"></a></div>';
+                $wn(contactInfo).insertAfter($wn(this).find('h4.headline'));
+            });
+
+            // button
+            $wn('<span class="backward control"></span>').prependTo($wn('#DisplaySizeId78'));
+            $wn('#DisplaySizeId78').append('<span class="forward control"></span>');
+            // events
+
+            /* hide */
+            if ($wn('.displaySize.displaySizeId78 .feature').length < 2) {
+                $wn('#DisplaySizeId78 > span.backward').hide();
+                $wn('#DisplaySizeId78 > span.forward').hide();
+            } else
+                $wn('#DisplaySizeId78 > span.backward').hide();
+
+            $wn('.displaySize.displaySizeId78 .feature:first').show();
+            $wn('.displaySize.displaySizeId78 .feature:not(:first)').hide();
+
+            $wn('#DisplaySizeId78 > span.forward').click(function () {
+                var len = $wn('.displaySize.displaySizeId78 .feature').length;
+                if (1 < len && currentPositionTeam < (len - 1)) {
+
+                    currentPositionTeam++;
+                    $wn('.displaySize.displaySizeId78 .feature').hide();
+                    $wn('.displaySize.displaySizeId78 .feature:nth-of-type(' + (currentPositionTeam + 1) + ')').show();
+
+                    $wn('#DisplaySizeId78 > span.backward').show();
+                    if (currentPositionTeam == (len - 1))
+                        $wn(this).hide();
+                } else {
                     $wn(this).hide();
-            } else {
-                $wn(this).hide();
-            }
-        });
-        $wn('#DisplaySizeId78 > span.backward').click(function () {
-            var len = $wn('.displaySize.displaySizeId78 .feature').length;
-            if (1 < len && currentPositionTeam > 0) {
+                }
+            });
+            $wn('#DisplaySizeId78 > span.backward').click(function () {
+                var len = $wn('.displaySize.displaySizeId78 .feature').length;
+                if (1 < len && currentPositionTeam > 0) {
 
-                currentPositionTeam--;
-                $wn('.displaySize.displaySizeId78 .feature').hide();
-                $wn('.displaySize.displaySizeId78 .feature:nth-of-type(' + (currentPositionTeam + 1) + ')').show();
-                $wn('#DisplaySizeId78 > span.forward').show();
-                if (currentPositionTeam == 0)
+                    currentPositionTeam--;
+                    $wn('.displaySize.displaySizeId78 .feature').hide();
+                    $wn('.displaySize.displaySizeId78 .feature:nth-of-type(' + (currentPositionTeam + 1) + ')').show();
+                    $wn('#DisplaySizeId78 > span.forward').show();
+                    if (currentPositionTeam == 0)
+                        $wn(this).hide();
+                } else {
                     $wn(this).hide();
-            } else {
-                $wn(this).hide();
-            }
-        });
-        // hide new/blog
-        $wn('#DisplaySizeId68 .contentGroup li:gt(3)').hide();
+                }
+            });
+            // hide new/blog
+            $wn('#DisplaySizeId68 .contentGroup li:gt(3)').hide();
 
-        // move before #DS 68
-        $wn('#DisplaySizeId78').insertAfter($wn('#DisplaySizeId68'));
-        $wn('#DisplaySizeId78 > ul > li.wnItem.feature > div.wnContent.summaryImage.abridged.left.width115 > a > img').addClass('override-team');
+            // move before #DS 68
+            $wn('#DisplaySizeId78').insertAfter($wn('#DisplaySizeId68'));
+            $wn('#DisplaySizeId78 > ul > li.wnItem.feature > div.wnContent.summaryImage.abridged.left.width115 > a > img').addClass('override-team');
+
+
+
+        });
     },
     //===============
     // move ad
@@ -2598,7 +2639,7 @@ var CDEVRFDTV = {
                     });
 
                     $wn('.list-more-news-wrapper .wnDVSummary').each(function (index) {
-                        if (index >= numberStories + 4) {
+                        if (index >= numberStories) {
                             $wn(this).hide();
                         }
                     });
@@ -2624,7 +2665,7 @@ var CDEVRFDTV = {
                         }
 
                         $wn('.list-more-news-wrapper .wnDVSummary').each(function (index) {
-                            if (index >= numberStories + 4) {
+                            if (index >= numberStories) {
                                 $wn(this).hide();
                             } else {
                                 $wn(this).show();
