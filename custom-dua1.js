@@ -539,6 +539,9 @@ var CDEVRFDTV = {
             $wn(this).html($wn(this).find('a'));
         });
 
+        var RFDTVStore = '<li><a href="http://store.rfdtv.com/category-s/100.htm" target="_blank"><img width="85px" src="http://RFDTV.images.worldnow.com/images/12481897_G.png"></a></li>';
+        $wn(RFDTVStore).insertAfter('#WNFooterLogos > ul > li:nth-child(3)');
+
         return;
     },
     ///////////////////////////////
@@ -894,26 +897,31 @@ var CDEVRFDTV = {
             $.ajax({
                 url: 'http://' + window.location.host + jsonUrls.weather
             })
-                .fail(function (err) {
-                    console.log(err);
-                })
-                .done(function (result) {
-                    //var data = $.parseJSON(result);
-                    var data = result;
-                    renderWeatherForecast(data);
-                    renderAuthorInformation(data);
-                });
+            .fail(function (err) {
+                console.log(err);
+            })
+            .done(function (result) {
+                //var data = $.parseJSON(result);
+                var data = result;
+                renderWeatherForecast(data);
+                renderAuthorInformation(data);
+            });
 
             var renderWeatherForecast = function (data) {
                 $wn('#divWNWidgetsContainer513').hide();
                 var title = data.header;
                 var abstract = remove_tags(data.currentconditions);
-                var url = data.weatherconditions.contenturl;
+                // var url = data.weatherconditions.contenturl;
+                var url = 'http://www.rfdtv.com/weather';
                 var weatherForecastElement = '';
                 var weatherForecastRaw = '<div class="videoplayer"></div>' +
                     '<div class="weatherContent">' +
                     '<a href="{*weatherURL*}"><h1>{*title*}</h1></a>' +
                     '<div class="content"><span class="abstract">{*abstract*}</span><span class="readmore"><a href="{*weatherURL*}"> Read More</a></span></div>' +
+                    '<div class="zipcode-search">' +
+                    '<input type="text" placeholder="Enter Zip Code">' +
+                    '<input type="button" value="Search">' +
+                    '</div>' +
                     '</div>';
                 weatherForecastElement = weatherForecastRaw
                     .replaceAll('{*weatherURL*}', url)
@@ -2331,7 +2339,7 @@ var CDEVRFDTV = {
                         social = wxTeamSocialInfo[i];
                         break;
                     } else {
-                        social = ['', 'http://www.facebook.com', 'http://www.twitter.com', '']; 
+                        social = ['', 'http://www.facebook.com', 'http://www.twitter.com', ''];
                     }
                 }
 
@@ -3458,7 +3466,7 @@ Worldnow.EventMan.event('bodydone', function () {
             }
         }
         if ((wng_pageInfo.containerClass === 'story') && (window.location.href.indexOf('story/22867419') == -1)) {
-            CDEVRFDTV.footerMenuBlock(); //make footer menu block
+            //CDEVRFDTV.footerMenuBlock(); //make footer menu block
         }
         CDEVRFDTV.stylingWallpaperAD();
         CDEVRFDTV.styleProgramming();
