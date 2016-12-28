@@ -4,7 +4,21 @@ if (typeof (wng_includesTracker) == 'undefined') { var wng_includesTracker = {};
 /*================================
  * INSERT LIBs
  *================================*/
+var isPromotion1 = wng_pageInfo.contentClassification == "Promotion 1" ? true : false;
+    isPromotion1 = wng_pageInfo.containerId == 310304 ? true : isPromotion1;
+    isPromotion1 = wng_pageInfo.containerId == 304378 ? true : isPromotion1;
 document.write("\<script src='http://ftpcontent.worldnow.com/wncustom/js/jquery.ellipsis.js' type='text/javascript'>\<\/script>");
+if( isPromotion1 ){
+    var script = document.createElement('script');
+    script.src = '/professionalservices/clients/rfdtv/theamerican/custom.js';
+    script.type = 'text/javascript';
+    document.getElementsByTagName('head')[0].appendChild(script);
+    script = document.createElement('link');
+    script.href = '/professionalservices/clients/rfdtv/theamerican/custom.css';
+    script.type = 'text/css';
+    script.rel = 'stylesheet';
+    document.getElementsByTagName('head')[0].appendChild(script);
+}
 
 /*================================
  * GLOBAL VARIABLES
@@ -13,9 +27,6 @@ document.write("\<script src='http://ftpcontent.worldnow.com/wncustom/js/jquery.
 var url = window.location.href.indexOf('#') > -1 ? window.location.href.substring(0, window.location.href.indexOf('#')) : window.location.href;
 url = url.indexOf('/?clienttype=smartdevice') > -1 ? url.replace('/?clienttype=smartdevice', '') : url; // use check mobile on desktop
 url = url.indexOf('?clienttype=smartdevice') > -1 ? url.replace('?clienttype=smartdevice', '') : url; // use check mobile on desktop
-var isPromotion1 = wng_pageInfo.contentClassification == "Promotion 1" ? true : false;
-    isPromotion1 = wng_pageInfo.containerId == 310304 ? true : isPromotion1;
-    isPromotion1 = wng_pageInfo.containerId == 304378 ? true : isPromotion1;
 var proxyURL = 'https://crossorigin.me/';
 var MostPopularStoriesCategoryNumber = "259595";
 var MostPopularVideosCategoryNumber = "259596";
@@ -3582,9 +3593,6 @@ $(window).load(function () {
             'width': '265px',
             'text-align': 'left'
         });
-
-        $('head').append('<script type="text/javascript" src="/professionalservices/clients/rfdtv/theamerican/custom.js"></script>');
-        $('head').append('<script type="text/javascript" src="/professionalservices/clients/rfdtv/theamerican/custom.css"></script>');
-        
+      
     }
 });
