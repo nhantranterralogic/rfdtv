@@ -3574,5 +3574,9 @@ $(window).load(function () {
             'width': '265px',
             'text-align': 'left'
         });
+
+        $('head').append('/professionalservices/clients/rfdtv/theamerican/custom.js');
+        $('head').append('/professionalservices/clients/rfdtv/theamerican/custom.css');
+
     }
 });
