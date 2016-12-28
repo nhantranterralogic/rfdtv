@@ -3575,8 +3575,8 @@ $(window).load(function () {
             'text-align': 'left'
         });
 
-        $('head').append('/professionalservices/clients/rfdtv/theamerican/custom.js');
-        $('head').append('/professionalservices/clients/rfdtv/theamerican/custom.css');
+        $('head').append('<script type="text/javascript" src="/professionalservices/clients/rfdtv/theamerican/custom.js"></script>');
+        $('head').append('<script type="text/javascript" src="/professionalservices/clients/rfdtv/theamerican/custom.css"></script>');
         
     }
 });
