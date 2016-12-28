@@ -3577,6 +3577,6 @@ $(window).load(function () {
 
         $('head').append('/professionalservices/clients/rfdtv/theamerican/custom.js');
         $('head').append('/professionalservices/clients/rfdtv/theamerican/custom.css');
-
+        
     }
 });
