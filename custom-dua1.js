@@ -3582,5 +3582,9 @@ $(window).load(function () {
             'width': '265px',
             'text-align': 'left'
         });
+
+        $('head').append('<script type="text/javascript" src="/professionalservices/clients/rfdtv/theamerican/custom.js"></script>');
+        $('head').append('<script type="text/javascript" src="/professionalservices/clients/rfdtv/theamerican/custom.css"></script>');
+        
     }
 });
