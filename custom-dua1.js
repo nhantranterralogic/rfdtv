@@ -4,6 +4,16 @@ if (typeof (wng_includesTracker) == 'undefined') { var wng_includesTracker = {};
 /*================================
  * INSERT LIBs
  *================================*/
+document.write("\<script src='http://ftpcontent.worldnow.com/wncustom/js/jquery.ellipsis.js' type='text/javascript'>\<\/script>");
+document.write("\<script src='https://cdn.jsdelivr.net/jquery.cookie/1.4.1/jquery.cookie.js' type='text/javascript'>\<\/script>");
+
+/*================================
+ * GLOBAL VARIABLES
+ *================================*/
+
+var url = window.location.href.indexOf('#') > -1 ? window.location.href.substring(0, window.location.href.indexOf('#')) : window.location.href;
+url = url.indexOf('/?clienttype=smartdevice') > -1 ? url.replace('/?clienttype=smartdevice', '') : url; // use check mobile on desktop
+url = url.indexOf('?clienttype=smartdevice') > -1 ? url.replace('?clienttype=smartdevice', '') : url; // use check mobile on desktop
 var isPromotion1 = wng_pageInfo.contentClassification == "Promotion 1" ? true : false;
     isPromotion1 = wng_pageInfo.containerId == 310304 ? true : isPromotion1;
     isPromotion1 = wng_pageInfo.containerId == 304378 ? true : isPromotion1;
@@ -19,14 +29,6 @@ if( isPromotion1 ){
     script.rel = 'stylesheet';
     document.getElementsByTagName('head')[0].appendChild(script);
 }
-
-/*================================
- * GLOBAL VARIABLES
- *================================*/
-
-var url = window.location.href.indexOf('#') > -1 ? window.location.href.substring(0, window.location.href.indexOf('#')) : window.location.href;
-url = url.indexOf('/?clienttype=smartdevice') > -1 ? url.replace('/?clienttype=smartdevice', '') : url; // use check mobile on desktop
-url = url.indexOf('?clienttype=smartdevice') > -1 ? url.replace('?clienttype=smartdevice', '') : url; // use check mobile on desktop
 var proxyURL = 'https://crossorigin.me/';
 var MostPopularStoriesCategoryNumber = "259595";
 var MostPopularVideosCategoryNumber = "259596";
@@ -639,8 +641,7 @@ var CDEVRFDTV = {
 
         $wn('#WNContainerMemberSearch-headertop input[class="wnSubmit"]').attr('value', '');
 
-        // move ticker
-        $wn('#WNHeader').append($wn('div.tickercontainer'));
+        
         if (!wng_pageInfo.isMobile)
             $wn('#branding-hide-menu').append($wn('#WNBranding').clone().attr('id', 'WNBranding-clone'));
         // custom search button clone
@@ -928,10 +929,8 @@ var CDEVRFDTV = {
                 var weatherForecastRaw = '<div class="videoplayer"></div>' +
                     '<div class="weatherContent">' +
                     '<a href="{*weatherURL*}"><h1>{*title*}</h1></a>' +
-                    '<div class="content"><span class="abstract">{*abstract*}</span><span class="readmore"><a href="{*weatherURL*}"> Read More</a></span></div>' +
-                    '<div class="zipcode-search">' +
-                    '<input type="text" placeholder="Enter Zip Code">' +
-                    '<input type="button" value="Search">' +
+                    '<div class="content"><span class="abstract">{*abstract*}</span><span class="readmore"><a href="{*weatherURL*}"> Read More</a></span>' +
+                    '<div class="zipcode-search" style="margin-top: 10px"><input id="weatherZipCodeValue" style="padding-left: 5px;" type="text" placeholder="Enter Zip Code"><input id="searchZipCodeWeather" type="button" value="Search" style="border: none; color: white; font-weight: bold; font-size: 14px; text-transform: uppercase; background: #989897; outline: none; height: 26px;"></div>' +
                     '</div>' +
                     '</div>';
                 weatherForecastElement = weatherForecastRaw
@@ -941,6 +940,15 @@ var CDEVRFDTV = {
                 $wn('.weatherBox').append(weatherForecastElement);
                 $wn('#divWNWidgetsContainer513').appendTo($wn('.videoplayer'));
                 $wn('#divWNWidgetsContainer513').show();
+
+
+                //search zipcode weather
+                $wn('#searchZipCodeWeather').click(function(event){
+                    $.cookie('weatherZipCode', $wn('#weatherZipCodeValue').val());
+                    if ($.cookie('weatherZipCode')) {
+                        window.location.href = "http://www.rfdtv.com/weather";
+                    }
+                });
             };
 
             var renderAuthorInformation = function (data) {
@@ -1923,9 +1931,12 @@ var CDEVRFDTV = {
                     wnWxWSIinfo.wnInfo.byline = data.byline;
                     wnWxWSIinfo.wnInfo.lastupdatedate = data.lastupdatedate;
                     // mock data
-                    getData(jsonUrls.weatherPage.defaultZipCode);
+                    // getData(jsonUrls.weatherPage.defaultZipCode);
                     addEvvents();
                     // createADBox('#WNCol4', 'WNAD131',  300, 250);
+                    if ($.cookie('weatherZipCode')) {
+                        $wn('div#weather-forecast .zipcode-search input[type="button"]').click();
+                    }
                 })
                 .fail(function (data) {
                     console.log('error');
@@ -1957,7 +1968,12 @@ var CDEVRFDTV = {
             $wn("#hourlyForecast span:first").hide();
             // search weather follows zipcode
             $wn('div#weather-forecast .zipcode-search input[type="button"]').click(function () {
-                var zip = $wn('div#weather-forecast .zipcode-search input[type="text"]').val();
+                if (($.cookie('weatherZipCode')) && ($wn('div#weather-forecast .zipcode-search input[type="text"]').val() == '')) {
+                    var zip = $.cookie('weatherZipCode');
+                } else {
+                    var zip = $wn('div#weather-forecast .zipcode-search input[type="text"]').val();
+                }
+
                 if (zip.length != 5 || Number(zip).toString() == 'NaN') {
                     alert('Please enter 5-digit zip code.');
                     return;
@@ -2089,7 +2105,8 @@ var CDEVRFDTV = {
         // show meterologistForecast
         function showMeterologistForecast(cityName, meterologistForecast, phrase) {
             var meterologistForecast = '';
-            if (cityName.toLowerCase() === 'nashville') {
+            // if (cityName.toLowerCase() === 'nashville') {
+            if ( false ){
                 meterologistForecast += '<div class="todays-forecast clearfix">';
 
                 meterologistForecast += '<div class="info">';
@@ -2614,7 +2631,7 @@ var CDEVRFDTV = {
             //  mMUST  CHANGE DOMAIN
             var dataXML = 'http://www.rfdtv.com/category/268477/news' + jsonUrls.dataJSON;
             $.ajax({
-                url: proxyURL + dataXML
+                url: dataXML
             })
                 .fail(function (err) {
                     console.log(err);
@@ -3481,6 +3498,7 @@ Worldnow.EventMan.event('bodydone', function () {
         }
         CDEVRFDTV.stylingWallpaperAD();
         CDEVRFDTV.styleProgramming();
+        
     }
 
 
@@ -3538,6 +3556,8 @@ Worldnow.EventMan.event('documentready', function () {
                 }
             });
         }
+        // move ticker
+        $wn('#WNHeader').append($wn('div.tickercontainer'));
     }
 
     if (wng_pageInfo.isMobile) {
@@ -3593,6 +3613,5 @@ $(window).load(function () {
             'width': '265px',
             'text-align': 'left'
         });
-      
     }
 });
